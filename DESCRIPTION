@@ -1,16 +1,27 @@
 Package: paqueteMeteo
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Análisis de Datos Meteorológicos del SIGA #Sistema de info. y gestion agroclimatica
+Version: 0.1.0
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Lucas", "Descalzo", email = "ldescalzo@mail.austral.edu.ar", 
+           role = c("aut", "cre"))
+Description: 
+    Este paquete permite leer, limpiar, resumir y analizar datos meteorológicos 
+    provenientes del sistema SIGA (INTA). 
+    Incluye funciones para importar archivos CSV, estandarizar nombres de columnas 
+    y generar resúmenes básicos de temperatura y precipitación.
+License: MIT + file LICENSE
 Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
+LazyData: true
+Depends: 
+    R (>= 4.1)
+Imports: 
+    readr,
+    dplyr,
+    lubridate,
+    janitor
+URL: https://github.com/Lucas-Descalzo/paqueteMeteo
+BugReports: https://github.com/Lucas-Descalzo/paqueteMeteo/issues
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-URL: https://github.com/Lucas-Descalzo/paqueteMeteo
-BugReports: https://github.com/Lucas-Descalzo/paqueteMeteo/issues
+RoxygenNote: 7.3.3
