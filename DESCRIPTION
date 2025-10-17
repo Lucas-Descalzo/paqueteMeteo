@@ -18,10 +18,13 @@ Imports:
     readr,
     dplyr,
     lubridate,
-    janitor
+    janitor,
+    httr,
+    rlang
 URL: https://github.com/Lucas-Descalzo/paqueteMeteo
 BugReports: https://github.com/Lucas-Descalzo/paqueteMeteo/issues
 Suggests: 
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    tibble
 Config/testthat/edition: 3
 RoxygenNote: 7.3.3

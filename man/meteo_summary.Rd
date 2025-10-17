@@ -2,16 +2,16 @@
 % Please edit documentation in R/meteo_summary.R
 \name{meteo_summary}
 \alias{meteo_summary}
-\title{Resumen básico de la serie}
+\title{Resumen b\u00e1sico de la serie}
 \usage{
 meteo_summary(df)
 }
 \arguments{
-\item{df}{Tibble limpio (salida de `meteo_clean()`), con `tmed` y `lluvia`.}
+\item{df}{Tibble limpio (salida de `meteo_clean()`), con nombres de janitor.}
 }
 \value{
 Tibble con temperatura media y lluvia total.
 }
 \description{
-Resumen básico de la serie
+Resumen b\u00e1sico de la serie
 }
