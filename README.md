@@ -1,14 +1,17 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+# paqueteMeteo: An0e1lisis de Datos Meteorol0f3gicos del SIGA
 
-# paqueteMeteo
+El paquete `paqueteMeteo` proporciona un conjunto de herramientas
+enfocadas en la **lectura, limpieza y resumen** de datos
+meteorol0f3gicos del sistema SIGA (INTA). Garantiza un flujo de trabajo
+**reproducible y estandarizado** para la ciencia de datos.
 
-Paquete de R para leer, limpiar y resumir datos meteorológicos del
-sistema SIGA (INTA).
+## Instalaci0f3n
 
-## Instalación
+Puedes instalar la versi0f3n de desarrollo desde GitHub. Reemplaza
+`Lucas-Descalzo` con tu nombre de usuario si es diferente en el
+repositorio final.
 
-Podés instalar la versión de desarrollo desde GitHub:
-
-\`\`\`r \# install.packages(“devtools”)
+\`\`\`r \# installemos devtools si es necesario \#
+install.packages(“devtools”)
 devtools::install_github(“Lucas-Descalzo/paqueteMeteo”)
