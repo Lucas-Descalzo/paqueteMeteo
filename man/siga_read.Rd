@@ -2,7 +2,7 @@
 % Please edit documentation in R/siga_read.R
 \name{siga_read}
 \alias{siga_read}
-\title{Leer archivo meteorológico del SIGA}
+\title{Lee un archivo de datos meteorol\u00f3gicos del sistema SIGA o similar}
 \usage{
 siga_read(path)
 }
@@ -10,8 +10,8 @@ siga_read(path)
 \item{path}{Ruta al archivo CSV.}
 }
 \value{
-Tibble con los datos meteorológicos crudos.
+Tibble con los datos meteorol\u00f3gicos crudos.
 }
 \description{
-Leer archivo meteorológico del SIGA
+Lee un archivo de datos meteorol\u00f3gicos del sistema SIGA o similar
 }
