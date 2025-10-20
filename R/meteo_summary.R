@@ -1,4 +1,4 @@
-#' Resumen b\u00e1sico de la serie
+#' Resumen basico de la serie
 #'
 #' @param df Tibble limpio (salida de `meteo_clean()`), con nombres de janitor.
 #' @return Tibble con temperatura media y lluvia total.

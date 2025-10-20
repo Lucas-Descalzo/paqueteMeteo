@@ -2,7 +2,7 @@
 % Please edit documentation in R/meteo_summary.R
 \name{meteo_summary}
 \alias{meteo_summary}
-\title{Resumen b\u00e1sico de la serie}
+\title{Resumen basico de la serie}
 \usage{
 meteo_summary(df)
 }
@@ -13,5 +13,5 @@ meteo_summary(df)
 Tibble con temperatura media y lluvia total.
 }
 \description{
-Resumen b\u00e1sico de la serie
+Resumen basico de la serie
 }
