@@ -7,10 +7,10 @@
 meteo_clean(df)
 }
 \arguments{
-\item{df}{Tibble devuelto por `siga_read()` o `siga_download()`.}
+\item{df}{Tibble devuelto por \`siga_read()\` o \`siga_download()\`.}
 }
 \value{
-Tibble con nombres estandarizados (`fecha`, `tmed`, `lluvia`) y columna `fecha` como Date.
+Tibble con nombres estandarizados (\`fecha\`, \`tmed\`, \`lluvia\`) y columna \`fecha\` como Date.
 }
 \description{
 Limpiar y estandarizar columnas

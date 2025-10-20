@@ -2,7 +2,7 @@
 % Please edit documentation in R/siga_download.R
 \name{siga_download}
 \alias{siga_download}
-\title{Descarga datos meteorol\u00f3gicos de una URL externa}
+\title{Descarga datos meteorol\enc{ó}{o}gicos de una URL externa}
 \usage{
 siga_download(url)
 }
@@ -13,8 +13,8 @@ siga_download(url)
 Un objeto `data.frame` (tibble) con los datos descargados.
 }
 \description{
-Esta funci\u00f3n realiza una petici\u00f3n HTTP a una URL y lee el contenido
-como un archivo CSV directamente en R, manejando errores de conexi\u00f3n.
+Esta funci\enc{ó}{o}n realiza una petici\enc{ó}{o}n HTTP a una URL y lee el contenido
+como un archivo CSV directamente en R, manejando errores de conexi\enc{ó}{o}n.
 }
 \examples{
 \dontrun{

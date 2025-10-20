@@ -1,7 +1,7 @@
-#' Lee un archivo de datos meteorol\u00f3gicos del sistema SIGA o similar
+#' Lee un archivo de datos meteorol\enc{ó}{o}gicos del sistema SIGA o similar
 #'
 #' @param path Ruta al archivo CSV.
-#' @return Tibble con los datos meteorol\u00f3gicos crudos.
+#' @return Tibble con los datos meteorol\enc{ó}{o}gicos crudos.
 #' @export
 siga_read <- function(path) {
 
@@ -13,6 +13,7 @@ siga_read <- function(path) {
 
   # Validaci\u00f3n 2: Verifica que el archivo exista
   if (!file.exists(path)) {
+    # El mensaje de error ya usa \u00f3 en "n\u00f3" y \u00e9 en "especificada"
     stop("El archivo no se encuentra en la ruta especificada: ", path, call. = FALSE)
   }
 
@@ -22,12 +23,14 @@ siga_read <- function(path) {
 
     # Mover la validaci\u00f3n de filas dentro del tryCatch si la lectura fue exitosa
     stopifnot(
+      # El mensaje de error ya usa \u00ed y \u00ed en "vac\u00edo"
       "El data frame est\u00e1 vac\u00edo (0 filas)." = nrow(df) > 0
     )
     return(df)
 
   }, error = function(e) {
     # Este es el c\u00f3digo que se ejecuta si readr::read_csv falla (por formato o contenido)
+    # El mensaje de error ya usa \u00f3 en "codificaci\u00f3n"
     stop("Error en la lectura del archivo CSV. Verifique el formato o la codificaci\u00f3n.", call. = FALSE)
   })
 

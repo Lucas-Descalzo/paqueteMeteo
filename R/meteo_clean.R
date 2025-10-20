@@ -1,7 +1,7 @@
 #' Limpiar y estandarizar columnas
 #'
-#' @param df Tibble devuelto por `siga_read()` o `siga_download()`.
-#' @return Tibble con nombres estandarizados (`fecha`, `tmed`, `lluvia`) y columna `fecha` como Date.
+#' @param df Tibble devuelto por \`siga_read()\` o \`siga_download()\`.
+#' @return Tibble con nombres estandarizados (\`fecha\`, \`tmed\`, \`lluvia\`) y columna \`fecha\` como Date.
 #' @export
 meteo_clean <- function(df) {
 
@@ -38,6 +38,7 @@ meteo_clean <- function(df) {
   if (!all(columnas_necesarias %in% names(df_final))) {
     rlang::abort(
       class = "columnas_faltantes",
+      # El c\u00f3digo ya utiliza el c\u00f3digo Unicode \u00e9 en 'despu\u00e9s'
       message = paste0("Faltan columnas esenciales despu\u00e9s de la limpieza: ",
                        paste(setdiff(columnas_necesarias, names(df_final)), collapse = ", "))
     )
