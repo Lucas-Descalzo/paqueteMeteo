@@ -1,8 +1,8 @@
 Package: paqueteMeteo
 Title: Análisis de Datos Meteorológicos del SIGA #Sistema de info. y gestion agroclimatica
 Version: 0.1.0
-Authors@R: 
-    person("Lucas, "Descalzo", email = "ldescalzo@mail.austral.edu.ar", 
+Authors@R:
+    person("Lucas", "Descalzo", email = "ldescalzo@mail.austral.edu.ar", 
            role = c("aut", "cre"))
 Description: 
     Este paquete permite leer, limpiar, resumir y analizar datos meteorológicos 
