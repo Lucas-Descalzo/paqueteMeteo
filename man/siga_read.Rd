@@ -15,3 +15,15 @@ Tibble con los datos meteorol\enc{ó}{o}gicos crudos.
 \description{
 Lee un archivo de datos meteorol\enc{ó}{o}gicos del sistema SIGA o similar
 }
+\examples{
+\dontrun{
+# Los datos de prueba se incluyen en el paquete para el chequeo:
+ruta_prueba <- system.file("extdata", "siga_test.csv", package = "paqueteMeteo")
+
+# Verifica si el archivo existe antes de intentar leer (si no, fallar\u00eda en el check)
+if (file.exists(ruta_prueba)) {
+  datos <- siga_read(ruta_prueba)
+  print(head(datos))
+}
+}
+}

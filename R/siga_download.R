@@ -7,9 +7,11 @@
 #' @return Un objeto `data.frame` (tibble) con los datos descargados.
 #' @examples
 #' \dontrun{
-#' # Ejemplo simulado:
-#' # datos <- siga_download("http://siga.inta.gob.ar/datos/estacion123.csv")
-#' # head(datos)
+#' # El ejemplo se incluye solo para fines de documentaci\u00f3n.
+#' # Descomentar para probar la descarga real de datos.
+#' # url_ejemplo <- "https://ejemplo.com/datos_test.csv"
+#' # datos_descargados <- siga_download(url_ejemplo)
+#' # head(datos_descargados)
 #' }
 #' @export
 siga_download <- function(url) {

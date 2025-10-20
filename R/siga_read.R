@@ -2,6 +2,17 @@
 #'
 #' @param path Ruta al archivo CSV.
 #' @return Tibble con los datos meteorol\enc{ó}{o}gicos crudos.
+#' @examples
+#' \dontrun{
+#' # Los datos de prueba se incluyen en el paquete para el chequeo:
+#' ruta_prueba <- system.file("extdata", "siga_test.csv", package = "paqueteMeteo")
+#'
+#' # Verifica si el archivo existe antes de intentar leer (si no, fallar\u00eda en el check)
+#' if (file.exists(ruta_prueba)) {
+#'   datos <- siga_read(ruta_prueba)
+#'   print(head(datos))
+#' }
+#' }
 #' @export
 siga_read <- function(path) {
 
