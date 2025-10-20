@@ -20,7 +20,8 @@ Imports:
     lubridate,
     janitor,
     httr,
-    rlang
+    rlang,
+    cli
 URL: https://github.com/Lucas-Descalzo/paqueteMeteo
 BugReports: https://github.com/Lucas-Descalzo/paqueteMeteo/issues
 Suggests: 

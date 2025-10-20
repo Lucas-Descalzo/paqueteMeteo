@@ -1,3 +1,5 @@
+# R/siga_read.R
+
 #' Lee un archivo de datos meteorol\enc{ó}{o}gicos del sistema SIGA o similar
 #'
 #' @param path Ruta al archivo CSV.
@@ -13,27 +15,29 @@ siga_read <- function(path) {
 
   # Validaci\u00f3n 2: Verifica que el archivo exista
   if (!file.exists(path)) {
-    # El mensaje de error ya usa \u00f3 en "n\u00f3" y \u00e9 en "especificada"
-    stop("El archivo no se encuentra en la ruta especificada: ", path, call. = FALSE)
+    # USO DE CLI: Usamos cli::cli_abort para el mensaje de error de archivo no encontrado
+    cli::cli_abort(
+      "El archivo no se encuentra en la ruta especificada: {.file {path}}",
+      class = "siga_archivo_no_encontrado"
+    )
   }
 
   # Leer el CSV (A\u00edsla el error de vroom::vroom con tryCatch)
   datos <- tryCatch({
     df <- readr::read_csv(path, show_col_types = FALSE)
 
-    # Mover la validaci\u00f3n de filas dentro del tryCatch si la lectura fue exitosa
-    stopifnot(
-      # El mensaje de error ya usa \u00ed y \u00ed en "vac\u00edo"
-      "El data frame est\u00e1 vac\u00edo (0 filas)." = nrow(df) > 0
-    )
+    # Validaci\u00f3n 3: Verifica que el objeto le\u00eddo no est\u00e9 vac\u00edo
+    if (nrow(df) == 0) {
+      cli::cli_abort("El data frame le\u00eddo est\u00e1 vac\u00edo (0 filas).",
+                     class = "siga_archivo_vacio")
+    }
     return(df)
 
   }, error = function(e) {
-    # Este es el c\u00f3digo que se ejecuta si readr::read_csv falla (por formato o contenido)
-    # El mensaje de error ya usa \u00f3 en "codificaci\u00f3n"
-    stop("Error en la lectura del archivo CSV. Verifique el formato o la codificaci\u00f3n.", call. = FALSE)
+    # USO DE CLI: Manejo de error de formato/lectura
+    cli::cli_abort("Error en la lectura del archivo CSV. Verifique el formato o la codificaci\u00f3n.",
+                   class = "siga_error_lectura")
   })
 
-  # El return final ahora es redundante pero lo dejamos para claridad.
   return(datos)
 }
