@@ -3,7 +3,7 @@ output: github_document
 ---
 
 # paqueteMeteo: An\u00e1lisis de Datos Meteorol\u00f3gicos del SIGA
-
+[![R-CMD-check](https://github.com/Lucas-Descalzo/paqueteMeteo/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Lucas-Descalzo/paqueteMeteo/actions/workflows/R-CMD-check.yaml)
 El paquete `paqueteMeteo` proporciona un conjunto de herramientas enfocadas en la **lectura, limpieza y resumen** de datos meteorol\u00f3gicos del sistema SIGA (INTA). Garantiza un flujo de trabajo **reproducible y estandarizado** para la ciencia de datos.
 
 ## Instalaci\u00f3n
