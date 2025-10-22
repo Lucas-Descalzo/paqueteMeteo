@@ -1,16 +1,70 @@
 ---
 output: github_document
+encoding: UTF-8
 ---
 
-# paqueteMeteo: An\u00e1lisis de Datos Meteorol\u00f3gicos del SIGA
 [![R-CMD-check](https://github.com/Lucas-Descalzo/paqueteMeteo/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Lucas-Descalzo/paqueteMeteo/actions/workflows/R-CMD-check.yaml)
-El paquete `paqueteMeteo` proporciona un conjunto de herramientas enfocadas en la **lectura, limpieza y resumen** de datos meteorol\u00f3gicos del sistema SIGA (INTA). Garantiza un flujo de trabajo **reproducible y estandarizado** para la ciencia de datos.
+# paqueteMeteo: An\enc{á}{a}lisis de Datos Meteorol\enc{ó}{o}gicos del SIGA
 
-## Instalaci\u00f3n
+El paquete `paqueteMeteo` proporciona un conjunto de herramientas enfocadas en la **lectura, limpieza y resumen** de datos meteorol\enc{ó}{o}gicos del sistema SIGA (INTA). Garantiza un flujo de trabajo **reproducible y estandarizado** para la ciencia de datos.
 
-Puedes instalar la versi\u00f3n de desarrollo desde GitHub. Reemplaza `Lucas-Descalzo` con tu nombre de usuario si es diferente en el repositorio final.
+## Instalaci\enc{ó}{o}n
 
-```r
+Puedes instalar la versi\enc{ó}{o}n de desarrollo desde GitHub.
+
+\`\`\`r
 # installemos devtools si es necesario
 # install.packages("devtools")
 devtools::install_github("Lucas-Descalzo/paqueteMeteo")
+\`\`\`
+
+---
+
+## Ejemplo de Flujo de Trabajo
+
+Este es un ejemplo reproducible que demuestra el flujo central de lectura, limpieza, resumen y visualizaci\enc{ó}{o}n de datos meteorol\enc{ó}{o}gicos.
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", message = FALSE, warning = FALSE)
+library(paqueteMeteo)
+library(dplyr) # Necesario para el pipe en el chunk de plot
+
+# Se crea un archivo de prueba SIMPLE y estable para la demostraci\u00f3n.
+ruta_ejemplo <- system.file("extdata", "siga_test_final.csv", package = "paqueteMeteo")
+
+# Si el archivo de prueba no existe, lo recreamos con nombres de columna sencillos:
+if (!file.exists(ruta_ejemplo)) {
+    datos_ejemplo_simple <- data.frame(
+        Fecha = as.Date(c("2024-01-01", "2024-02-01", "2024-03-01", "2024-04-01")),
+        T_MAX_C = c(25.5, 30.1, 28.0, 22.3), # Nombres con mayusculas para la limpieza
+        `Precipitacion (mm)` = c(5, 1.2, 0, 15)
+    )
+    readr::write_csv(datos_ejemplo_simple, "inst/extdata/siga_test_final.csv")
+    ruta_ejemplo <- "inst/extdata/siga_test_final.csv" # Usamos la ruta local
+}
+```
+
+1. Lectura y Limpieza
+Se utiliza siga_read() para importar los datos crudos y luego meteo_clean() para estandarizar los nombres de columna y forzar el tipo Date en la columna `fecha`.
+```{r}
+datos_crudos <- paqueteMeteo::siga_read(ruta_ejemplo) # Uso expl\enc{í}{i}cito
+datos_limpios <- paqueteMeteo::meteo_clean(datos_crudos) # Uso expl\enc{í}{i}cito
+head(datos_limpios)
+```
+
+2. Resumen Estad\enc{í}{i}stico
+La funci\enc{ó}{o}n meteo_summary() calcula la temperatura media y la lluvia total para el per\enc{í}{i}odo.
+```{r}
+paqueteMeteo::meteo_summary(datos_limpios) # Uso expl\enc{í}{i}cito
+```
+
+3. Visualizaci\enc{ó}{o}n de Tendencia
+La funci\enc{ó}{o}n meteo_plot() genera un gr\enc{á}{a}fico de la tendencia de temperatura media, utilizando la columna `fecha` para un an\enc{á}{a}lisis temporal r\enc{á}{a}pido.
+```{r}
+# Aseguramos que los datos tengan la columna fecha para el plot
+datos_limpios_plot <- datos_limpios |> 
+    dplyr::mutate(fecha = as.Date(fecha))
+
+paqueteMeteo::meteo_plot(datos_limpios_plot) # Uso expl\enc{í}{i}cito
+```
+
