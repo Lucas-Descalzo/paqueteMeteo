@@ -15,19 +15,17 @@ meteo_clean <- function(df) {
   # 2. Inicializar df_renombrado con df_limpio (para visibilidad)
   df_renombrado <- df_limpio
 
-  # 3. Renombramiento a nombres est\u00e1ndar (tmed, lluvia) - Aislado en tryCatch
-  # Si falla el renombre, df_renombrado mantendr\u00e1 el valor de df_limpio,
-  # y la validaci\u00f3n de columnas fallar\u00e1 limpiamente con cli.
-  df_renombrado <- tryCatch({
-    df_limpio |>
-      dplyr::rename(
-        tmed = t_max_c,
-        lluvia = lluvia_mm
-      )
-  }, error = function(e) {
-    # Retornamos df_limpio si el rename falla (porque faltan columnas)
-    return(df_limpio)
-  })
+  # 3. Renombramiento a nombres estándar (tmed, lluvia)
+  #    Usamos dplyr::any_of() para renombrar la columna que exista.
+  df_renombrado <- df_limpio |>
+    dplyr::rename(
+      # Renombra tmed SI "t_max_c" existe (de T_MAX_C)
+      tmed = dplyr::any_of("t_max_c"),
+
+      # Renombra lluvia SI "lluvia_mm" O "precipitacion_mm" existen
+      # (precipitacion_mm viene de tu Precipitacion...mm.)
+      lluvia = dplyr::any_of(c("lluvia_mm", "precipitacion_mm"))
+    )
 
   # 4. Mutaci\u00f3n (fecha)
   df_final <- df_renombrado |>

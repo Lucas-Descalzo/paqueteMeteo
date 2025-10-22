@@ -25,6 +25,7 @@ Imports:
 URL: https://github.com/Lucas-Descalzo/paqueteMeteo
 BugReports: https://github.com/Lucas-Descalzo/paqueteMeteo/issues
 Suggests: 
+    ggplot2,
     testthat (>= 3.0.0),
     tibble
 Config/testthat/edition: 3
