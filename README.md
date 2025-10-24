@@ -1,5 +1,8 @@
 
 [![R-CMD-check](https://github.com/Lucas-Descalzo/paqueteMeteo/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Lucas-Descalzo/paqueteMeteo/actions/workflows/R-CMD-check.yaml)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![codecov](https://codecov.io/gh/Lucas-Descalzo/paqueteMeteo/branch/master/graph/badge.svg?token=YOUR_CODECOV_TOKEN)](https://codecov.io/gh/Lucas-Descalzo/paqueteMeteo)
 
 # paqueteMeteo: Análisis de Datos Meteorológicos del SIGA
 
@@ -36,24 +39,24 @@ Puedes instalar la versión de desarrollo desde GitHub con:
 # installemos devtools si es necesario
 # install.packages("devtools")
 devtools::install_github("Lucas-Descalzo/paqueteMeteo")
-#> These packages have more recent versions available.
-#> It is recommended to update all of them.
-#> Which would you like to update?
+#> utf8     (1.2.4 -> 1.2.6) [CRAN]
+#> tibble   (3.2.1 -> 3.3.0) [CRAN]
+#> purrr    (1.0.2 -> 1.1.0) [CRAN]
+#> magrittr (2.0.3 -> 2.0.4) [CRAN]
+#> glue     (1.7.0 -> 1.8.0) [CRAN]
+#> package 'utf8' successfully unpacked and MD5 sums checked
+#> package 'tibble' successfully unpacked and MD5 sums checked
+#> package 'purrr' successfully unpacked and MD5 sums checked
+#> package 'magrittr' successfully unpacked and MD5 sums checked
+#> package 'glue' successfully unpacked and MD5 sums checked
 #> 
-#> 1: All                             
-#> 2: CRAN packages only              
-#> 3: None                            
-#> 4: utf8     (1.2.4 -> 1.2.6) [CRAN]
-#> 5: tibble   (3.2.1 -> 3.3.0) [CRAN]
-#> 6: purrr    (1.0.2 -> 1.1.0) [CRAN]
-#> 7: magrittr (2.0.3 -> 2.0.4) [CRAN]
-#> 8: glue     (1.7.0 -> 1.8.0) [CRAN]
-#> 
-#> ── R CMD build ───────────────────────────────────────────────────────────────────────────────
-#>          checking for file 'C:\Users\lucas\AppData\Local\Temp\RtmpiOuFdl\remotes35a01bd25ada\Lucas-Descalzo-paqueteMeteo-00cf9ea/DESCRIPTION' ...  ✔  checking for file 'C:\Users\lucas\AppData\Local\Temp\RtmpiOuFdl\remotes35a01bd25ada\Lucas-Descalzo-paqueteMeteo-00cf9ea/DESCRIPTION' (348ms)
-#>       ─  preparing 'paqueteMeteo':
+#> The downloaded binary packages are in
+#>  C:\Users\lucas\AppData\Local\Temp\Rtmpkzf9O3\downloaded_packages
+#> ── R CMD build ─────────────────────────────────────────────────────────────────
+#>          checking for file 'C:\Users\lucas\AppData\Local\Temp\Rtmpkzf9O3\remotes7de462e86790\Lucas-Descalzo-paqueteMeteo-b74e9ea/DESCRIPTION' ...  ✔  checking for file 'C:\Users\lucas\AppData\Local\Temp\Rtmpkzf9O3\remotes7de462e86790\Lucas-Descalzo-paqueteMeteo-b74e9ea/DESCRIPTION' (369ms)
+#>       ─  preparing 'paqueteMeteo': (720ms)
 #>    checking DESCRIPTION meta-information ...     checking DESCRIPTION meta-information ...   ✔  checking DESCRIPTION meta-information
-#>       ─  checking for LF line-endings in source and make files and shell scripts (365ms)
+#>       ─  checking for LF line-endings in source and make files and shell scripts (362ms)
 #>   ─  checking for empty or unneeded directories
 #>      Omitted 'LazyData' from DESCRIPTION
 #>       ─  building 'paqueteMeteo_0.1.0.tar.gz'
