@@ -13,15 +13,5 @@ siga_download(url)
 Un objeto `data.frame` (tibble) con los datos descargados.
 }
 \description{
-Esta funci\enc{ó}{o}n realiza una petici\enc{ó}{o}n HTTP a una URL y lee el contenido
-como un archivo CSV directamente en R, manejando errores de conexi\enc{ó}{o}n.
-}
-\examples{
-\dontrun{
-# El ejemplo se incluye solo para fines de documentaci\u00f3n.
-# Descomentar para probar la descarga real de datos.
-# url_ejemplo <- "https://ejemplo.com/datos_test.csv"
-# datos_descargados <- siga_download(url_ejemplo)
-# head(datos_descargados)
-}
+Descarga datos meteorol\enc{ó}{o}gicos de una URL externa
 }

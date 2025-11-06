@@ -15,3 +15,7 @@ Tibble con temperatura media y lluvia total.
 \description{
 Resumen basico de la serie
 }
+\examples{
+datos_limpios <- data.frame(fecha = as.Date("2024-01-01"), tmed = 20, lluvia = 5)
+meteo_summary(datos_limpios)
+}

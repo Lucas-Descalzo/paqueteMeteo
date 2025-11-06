@@ -46,3 +46,21 @@ testthat::test_that("siga_read lanza error en validaciones de entrada", {
     file.remove("archivo_invalido.txt")
   }
 })
+
+test_that("siga_read falla si el archivo CSV est\u00e1 malformado", {
+
+  # Creamos un archivo de texto inv\u00e1lido (no es un CSV)
+  path_invalido <- "archivo_malo.txt"
+  writeLines("Esto no es un CSV, es solo texto", path_invalido)
+
+  # Esperamos el error de lectura que definimos con cli
+  testthat::expect_error(
+    siga_read(path_invalido),
+    class = "siga_error_lectura"
+  )
+
+  # Limpiamos
+  if (file.exists(path_invalido)) {
+    file.remove(path_invalido)
+  }
+})

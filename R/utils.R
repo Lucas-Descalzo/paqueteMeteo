@@ -5,8 +5,10 @@
 # sin el prefijo del data frame.
 utils::globalVariables(c(
   ".",       # Operador 'pipe' de magrittr/dplyr
-  ".data",   # S\u00edmbolo de rlang para el binding
+  ".data",   # Símbolo de rlang para el binding
   "fecha",   # Usado en meteo_clean
-  "t_max_c", # Nuevo nombre estandarizado de la temperatura (despu\u00e9s de janitor)
-  "lluvia_mm" # Nuevo nombre estandarizado de la lluvia (despu\u00e9s de janitor)
+  "t_max_c", # Nombre intermedio después de janitor
+  "lluvia_mm", # Nombre intermedio después de janitor
+  "tmed",    # Nombre final usado en meteo_summary y meteo_plot
+  "lluvia"   # Nombre final usado en meteo_summary
 ))

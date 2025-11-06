@@ -4,10 +4,8 @@
 #' @return Tibble con los datos meteorol\enc{ó}{o}gicos crudos.
 #' @examples
 #' \dontrun{
-#' # Los datos de prueba se incluyen en el paquete para el chequeo:
+#' # Necesita un archivo real
 #' ruta_prueba <- system.file("extdata", "siga_test.csv", package = "paqueteMeteo")
-#'
-#' # Verifica si el archivo existe antes de intentar leer (si no, fallar\u00eda en el check)
 #' if (file.exists(ruta_prueba)) {
 #'   datos <- siga_read(ruta_prueba)
 #'   print(head(datos))
@@ -16,35 +14,40 @@
 #' @export
 siga_read <- function(path) {
 
-  # Validaci\u00f3n 1: Verifica que la entrada sea un string
-  stopifnot(
-    "La ruta debe ser un string (character)." = is.character(path),
-    "El string de la ruta no puede estar vac\u00edo." = nchar(path) > 0
-  )
-
-  # Validaci\u00f3n 2: Verifica que el archivo exista
-  if (!file.exists(path)) {
-    # El mensaje de error ya usa \u00f3 en "n\u00f3" y \u00e9 en "especificada"
-    stop("El archivo no se encuentra en la ruta especificada: ", path, call. = FALSE)
+  # Validación 1: Verifica que la entrada sea un string
+  if (!is.character(path) || length(path) != 1L) {
+    cli::cli_abort("La ruta debe ser un string (character).", class = "siga_input_invalido")
+  }
+  if (identical(trimws(path), "")) {
+    cli::cli_abort("El string de la ruta no puede estar vac\u00edo.", class = "siga_input_vacio")
   }
 
-  # Leer el CSV (A\u00edsla el error de vroom::vroom con tryCatch)
+  # Validación 2: Verifica que el archivo exista
+  if (!file.exists(path)) {
+    cli::cli_abort(
+      "El archivo no se encuentra en la ruta especificada: {.file {path}}",
+      class = "siga_archivo_no_encontrado"
+    )
+  }
+
+  # Leer el CSV (Aísla el error de vroom::vroom con tryCatch)
   datos <- tryCatch({
     df <- readr::read_csv(path, show_col_types = FALSE)
 
-    # Mover la validaci\u00f3n de filas dentro del tryCatch si la lectura fue exitosa
-    stopifnot(
-      # El mensaje de error ya usa \u00ed y \u00ed en "vac\u00edo"
-      "El data frame est\u00e1 vac\u00edo (0 filas)." = nrow(df) > 0
-    )
+    if (nrow(df) == 0) {
+      cli::cli_abort("El data frame est\u00e1 vac\u00edo (0 filas).", class = "siga_archivo_vacio")
+    }
     return(df)
 
   }, error = function(e) {
-    # Este es el c\u00f3digo que se ejecuta si readr::read_csv falla (por formato o contenido)
-    # El mensaje de error ya usa \u00f3 en "codificaci\u00f3n"
-    stop("Error en la lectura del archivo CSV. Verifique el formato o la codificaci\u00f3n.", call. = FALSE)
+    # Manejo de error de formato/lectura
+    cli::cli_abort(
+      c("Error en la lectura del archivo CSV. Verifique el formato o la codificaci\u00f3n.",
+        "i" = "Error original: {e$message}"),
+      class = "siga_error_lectura",
+      parent = e
+    )
   })
 
-  # El return final ahora es redundante pero lo dejamos para claridad.
   return(datos)
 }

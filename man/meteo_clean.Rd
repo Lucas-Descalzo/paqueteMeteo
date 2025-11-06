@@ -15,3 +15,11 @@ Tibble con nombres estandarizados (\`fecha\`, \`tmed\`, \`lluvia\`) y columna \`
 \description{
 Limpiar y estandarizar columnas
 }
+\examples{
+datos_crudos <- data.frame(
+  Fecha = "2024-01-01",
+  T_MAX_C = 25,
+  `lluvia (mm)` = 0
+)
+meteo_clean(datos_crudos)
+}

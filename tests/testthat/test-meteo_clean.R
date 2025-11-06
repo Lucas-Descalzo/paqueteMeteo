@@ -45,3 +45,13 @@ testthat::test_that("meteo_clean lanza error si faltan columnas criticas", {
     class = "columnas_faltantes"
   )
 })
+
+test_that("meteo_clean falla si el input no es un data frame", {
+
+  # Probamos que la validaci\u00f3n de entrada funciona
+  testthat::expect_error(
+    meteo_clean(12345),
+    class = "siga_input_invalido"
+  )
+
+})

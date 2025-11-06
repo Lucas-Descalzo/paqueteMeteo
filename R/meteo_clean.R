@@ -2,44 +2,54 @@
 #'
 #' @param df Tibble devuelto por \`siga_read()\` o \`siga_download()\`.
 #' @return Tibble con nombres estandarizados (\`fecha\`, \`tmed\`, \`lluvia\`) y columna \`fecha\` como Date.
+#' @examples
+#' datos_crudos <- data.frame(
+#'   Fecha = "2024-01-01",
+#'   T_MAX_C = 25,
+#'   `lluvia (mm)` = 0
+#' )
+#' meteo_clean(datos_crudos)
 #' @export
 meteo_clean <- function(df) {
 
-  # Validaci\u00f3n 1: Chequeo de input
-  stopifnot("El input debe ser un data frame." = inherits(df, "data.frame"))
+  # Validación 1: Chequeo de input
+  if (!inherits(df, "data.frame")) {
+    cli::cli_abort("El input debe ser un data frame.", class = "siga_input_invalido")
+  }
 
-  # 1. Limpieza b\u00e1sica (janitor)
+  # 1. Limpieza básica (janitor)
   df_limpio <- df |>
     janitor::clean_names()
 
   # 2. Inicializar df_renombrado con df_limpio (para visibilidad)
   df_renombrado <- df_limpio
 
-  # 3. Renombramiento a nombres estándar (tmed, lluvia)
-  #    Usamos dplyr::any_of() para renombrar la columna que exista.
-  df_renombrado <- df_limpio |>
-    dplyr::rename(
-      # Renombra tmed SI "t_max_c" existe (de T_MAX_C)
-      tmed = dplyr::any_of("t_max_c"),
+  # 3. Renombramiento a nombres estándar (tmed, lluvia) - Aislado en tryCatch
+  df_renombrado <- tryCatch({
+    df_limpio |>
+      dplyr::rename(
+        tmed = t_max_c,
+        lluvia = lluvia_mm
+      )
+  }, error = function(e) {
+    # Si el renombre falla, devolvemos df_limpio.
+    # La validación de más abajo se encargará del error.
+    return(df_limpio)
+  })
 
-      # Renombra lluvia SI "lluvia_mm" O "precipitacion_mm" existen
-      # (precipitacion_mm viene de tu Precipitacion...mm.)
-      lluvia = dplyr::any_of(c("lluvia_mm", "precipitacion_mm"))
-    )
-
-  # 4. Mutaci\u00f3n (fecha)
+  # 4. Mutación (fecha)
   df_final <- df_renombrado |>
     dplyr::mutate(
       fecha = suppressWarnings(lubridate::as_date(.data$fecha))
     )
 
-  # Validaci\u00f3n 2: Verifica la existencia de columnas esenciales (Punto 15)
+  # Validación 2: Verifica la existencia de columnas esenciales
   columnas_necesarias <- c("fecha", "tmed", "lluvia")
 
   if (!all(columnas_necesarias %in% names(df_final))) {
     columnas_faltantes <- setdiff(columnas_necesarias, names(df_final))
 
-    # USO DE CLI: Mensaje de la materia
+    # USO DE CLI:
     cli::cli_abort(
       c("Faltan columnas esenciales despu\u00e9s de la limpieza:",
         "x" = "Columnas requeridas: {.val {columnas_necesarias}}",
