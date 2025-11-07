@@ -62,10 +62,6 @@ meteo_summary(datos_limpios)
 #> 1       25.6            5
 ```
 
-# (Opcional) visualización — no se ejecuta para evitar imágenes grandes en README
-
-# meteo_plot(datos_limpios)
-
 ## Cómo obtener ayuda
 
 Si encuentras un error (bug) o deseas solicitar una nueva

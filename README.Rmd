@@ -60,8 +60,6 @@ datos_limpios <- meteo_clean(datos_crudos)
 
 meteo_summary(datos_limpios)
 ```
-# (Opcional) visualización — no se ejecuta para evitar imágenes grandes en README
-# meteo_plot(datos_limpios)
 
 ## Cómo obtener ayuda
 
