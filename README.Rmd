@@ -56,9 +56,14 @@ datos_crudos <- tibble::tibble(
   lluvia = c(0, 5)
 )
 
+# limpieza → columnas estándar
 datos_limpios <- meteo_clean(datos_crudos)
 
+# resumen del período
 meteo_summary(datos_limpios)
+
+# visualización (opcional, como comentaron)
+# meteo_plot(datos_limpios)
 ```
 
 ## Cómo obtener ayuda

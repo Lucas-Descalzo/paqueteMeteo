@@ -53,13 +53,18 @@ datos_crudos <- tibble::tibble(
   lluvia = c(0, 5)
 )
 
+# limpieza → columnas estándar
 datos_limpios <- meteo_clean(datos_crudos)
 
+# resumen del período
 meteo_summary(datos_limpios)
 #> # A tibble: 1 × 2
 #>   temp_media lluvia_total
 #>        <dbl>        <dbl>
 #> 1       25.6            5
+
+# visualización (opcional, como comentaron)
+# meteo_plot(datos_limpios)
 ```
 
 ## Cómo obtener ayuda
