@@ -37,104 +37,34 @@ en el análisis en lugar de en la preparación de datos.
 Puedes instalar la versión de desarrollo desde GitHub con:
 
 ``` r
-# installemos devtools si es necesario
-# install.packages("devtools")
-devtools::install_github("Lucas-Descalzo/paqueteMeteo")
-#> utf8     (1.2.4 -> 1.2.6) [CRAN]
-#> tibble   (3.2.1 -> 3.3.0) [CRAN]
-#> stringr  (1.5.2 -> 1.6.0) [CRAN]
-#> purrr    (1.0.2 -> 1.2.0) [CRAN]
-#> magrittr (2.0.3 -> 2.0.4) [CRAN]
-#> glue     (1.7.0 -> 1.8.0) [CRAN]
-#> 
-#>   There are binary versions available but the source versions are later:
-#>         binary source needs_compilation
-#> stringr  1.5.2  1.6.0             FALSE
-#> purrr    1.1.0  1.2.0              TRUE
-#> 
-#> package 'utf8' successfully unpacked and MD5 sums checked
-#> package 'tibble' successfully unpacked and MD5 sums checked
-#> package 'magrittr' successfully unpacked and MD5 sums checked
-#> package 'glue' successfully unpacked and MD5 sums checked
-#> 
-#> The downloaded binary packages are in
-#>  C:\Users\lucas\AppData\Local\Temp\RtmpU3xc0I\downloaded_packages
-#> ── R CMD build ─────────────────────────────────────────────────────────────────
-#>       ✔  checking for file 'C:\Users\lucas\AppData\Local\Temp\RtmpU3xc0I\remotes26ccc0e5e24\Lucas-Descalzo-paqueteMeteo-bdbe7fc/DESCRIPTION'
-#>       ─  preparing 'paqueteMeteo': (447ms)
-#>    checking DESCRIPTION meta-information ...     checking DESCRIPTION meta-information ...   ✔  checking DESCRIPTION meta-information
-#>       ─  checking for LF line-endings in source and make files and shell scripts
-#>   ─  checking for empty or unneeded directories
-#>      Omitted 'LazyData' from DESCRIPTION
-#>       ─  building 'paqueteMeteo_0.1.0.tar.gz'
-#>      
-#> 
+# install.packages("pak")
+pak::pak("Lucas-Descalzo/paqueteMeteo")
 ```
 
 ## Ejemplo de Flujo de Trabajo
 
-Este es un ejemplo reproducible que demuestra el flujo central de
-lectura, limpieza, resumen y visualización de datos meteorológicos.
-
 ``` r
 library(paqueteMeteo)
-library(dplyr) # Necesario para el pipe en el chunk de plot
 
-# Se crea un archivo de prueba SIMPLE y estable para la demostración.
-ruta_ejemplo <- system.file("extdata", "siga_test_final.csv", package = "paqueteMeteo")
-
-# (Nota: El archivo de ejemplo se incluye dentro del paquete)
-```
-
-### 1. Lectura y Limpieza
-
-Se utiliza `siga_read()` para importar los datos crudos y luego
-`meteo_clean()` para estandarizar los nombres de columna y forzar el
-tipo `Date` en la columna `fecha`.
-
-``` r
+# dataset mínimo reproducible
 datos_crudos <- tibble::tibble(
-  fecha  = as.Date(c("2024-01-01", "2024-01-02")),
+  fecha  = as.Date(c("2024-01-01","2024-01-02")),
   tmed   = c(26.3, 24.8),
   lluvia = c(0, 5)
 )
 
-# Forzamos a que se vean mensajes en este chunk
-knitr::opts_chunk$set(message = TRUE)
+datos_limpios <- meteo_clean(datos_crudos)
 
-datos_limpios <- paqueteMeteo::meteo_clean(datos_crudos)
-head(datos_limpios)
-#> # A tibble: 2 × 3
-#>   fecha       tmed lluvia
-#>   <date>     <dbl>  <dbl>
-#> 1 2024-01-01  26.3      0
-#> 2 2024-01-02  24.8      5
-```
-
-### 2. Resumen Estadístico
-
-La función `meteo_summary()` calcula la temperatura media y la lluvia
-total para el período.
-
-``` r
-paqueteMeteo::meteo_summary(datos_limpios)
+meteo_summary(datos_limpios)
 #> # A tibble: 1 × 2
 #>   temp_media lluvia_total
 #>        <dbl>        <dbl>
 #> 1       25.6            5
 ```
 
-### 3. Visualización de Tendencia
+# (Opcional) visualización — no se ejecuta para evitar imágenes grandes en README
 
-La función `meteo_plot()` genera un gráfico de la tendencia de
-temperatura media, utilizando la columna `fecha` para un análisis
-temporal rápido.
-
-``` r
-paqueteMeteo::meteo_plot(datos_limpios)
-```
-
-<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
+# meteo_plot(datos_limpios)
 
 ## Cómo obtener ayuda
 
