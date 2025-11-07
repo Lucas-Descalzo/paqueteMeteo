@@ -64,7 +64,15 @@ ruta_ejemplo <- system.file("extdata", "siga_test_final.csv", package = "paquete
 Se utiliza `siga_read()` para importar los datos crudos y luego `meteo_clean()` para estandarizar los nombres de columna y forzar el tipo `Date` en la columna `fecha`.
 
 ```{r}
-datos_crudos <- paqueteMeteo::siga_read(ruta_ejemplo)
+datos_crudos <- tibble::tibble(
+  fecha  = as.Date(c("2024-01-01", "2024-01-02")),
+  tmed   = c(26.3, 24.8),
+  lluvia = c(0, 5)
+)
+
+# Forzamos a que se vean mensajes en este chunk
+knitr::opts_chunk$set(message = TRUE)
+
 datos_limpios <- paqueteMeteo::meteo_clean(datos_crudos)
 head(datos_limpios)
 ```
@@ -82,11 +90,7 @@ paqueteMeteo::meteo_summary(datos_limpios)
 La función `meteo_plot()` genera un gráfico de la tendencia de temperatura media, utilizando la columna `fecha` para un análisis temporal rápido.
 
 ```{r}
-# Aseguramos que los datos tengan la columna fecha para el plot
-datos_limpios_plot <- datos_limpios |>
-    dplyr::mutate(fecha = as.Date(fecha))
-
-paqueteMeteo::meteo_plot(datos_limpios_plot)
+paqueteMeteo::meteo_plot(datos_limpios)
 ```
 
 ## Cómo obtener ayuda

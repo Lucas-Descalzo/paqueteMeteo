@@ -6,10 +6,11 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 
 # paqueteMeteo: Análisis de Datos Meteorológicos del SIGA
 
-El paquete `paqueteMeteo` proporciona un conjunto de herramientas
-enfocadas en la **lectura, limpieza y resumen** de datos meteorológicos
-del sistema SIGA (INTA). Garantiza un flujo de trabajo **reproducible y
-estandarizado** para la ciencia de datos.
+<img src="man/figures/logo.png" align="right" width="120" /> El paquete
+`paqueteMeteo` proporciona un conjunto de herramientas enfocadas en la
+**lectura, limpieza y resumen** de datos meteorológicos del sistema SIGA
+(INTA). Garantiza un flujo de trabajo **reproducible y estandarizado**
+para la ciencia de datos.
 
 ## Características Principales
 
@@ -41,22 +42,28 @@ Puedes instalar la versión de desarrollo desde GitHub con:
 devtools::install_github("Lucas-Descalzo/paqueteMeteo")
 #> utf8     (1.2.4 -> 1.2.6) [CRAN]
 #> tibble   (3.2.1 -> 3.3.0) [CRAN]
-#> purrr    (1.0.2 -> 1.1.0) [CRAN]
+#> stringr  (1.5.2 -> 1.6.0) [CRAN]
+#> purrr    (1.0.2 -> 1.2.0) [CRAN]
 #> magrittr (2.0.3 -> 2.0.4) [CRAN]
 #> glue     (1.7.0 -> 1.8.0) [CRAN]
+#> 
+#>   There are binary versions available but the source versions are later:
+#>         binary source needs_compilation
+#> stringr  1.5.2  1.6.0             FALSE
+#> purrr    1.1.0  1.2.0              TRUE
+#> 
 #> package 'utf8' successfully unpacked and MD5 sums checked
 #> package 'tibble' successfully unpacked and MD5 sums checked
-#> package 'purrr' successfully unpacked and MD5 sums checked
 #> package 'magrittr' successfully unpacked and MD5 sums checked
 #> package 'glue' successfully unpacked and MD5 sums checked
 #> 
 #> The downloaded binary packages are in
-#>  C:\Users\lucas\AppData\Local\Temp\Rtmpkzf9O3\downloaded_packages
+#>  C:\Users\lucas\AppData\Local\Temp\RtmpU3xc0I\downloaded_packages
 #> ── R CMD build ─────────────────────────────────────────────────────────────────
-#>          checking for file 'C:\Users\lucas\AppData\Local\Temp\Rtmpkzf9O3\remotes7de462e86790\Lucas-Descalzo-paqueteMeteo-b74e9ea/DESCRIPTION' ...  ✔  checking for file 'C:\Users\lucas\AppData\Local\Temp\Rtmpkzf9O3\remotes7de462e86790\Lucas-Descalzo-paqueteMeteo-b74e9ea/DESCRIPTION' (369ms)
-#>       ─  preparing 'paqueteMeteo': (720ms)
+#>       ✔  checking for file 'C:\Users\lucas\AppData\Local\Temp\RtmpU3xc0I\remotes26ccc0e5e24\Lucas-Descalzo-paqueteMeteo-bdbe7fc/DESCRIPTION'
+#>       ─  preparing 'paqueteMeteo': (447ms)
 #>    checking DESCRIPTION meta-information ...     checking DESCRIPTION meta-information ...   ✔  checking DESCRIPTION meta-information
-#>       ─  checking for LF line-endings in source and make files and shell scripts (362ms)
+#>       ─  checking for LF line-endings in source and make files and shell scripts
 #>   ─  checking for empty or unneeded directories
 #>      Omitted 'LazyData' from DESCRIPTION
 #>       ─  building 'paqueteMeteo_0.1.0.tar.gz'
@@ -86,16 +93,22 @@ Se utiliza `siga_read()` para importar los datos crudos y luego
 tipo `Date` en la columna `fecha`.
 
 ``` r
-datos_crudos <- paqueteMeteo::siga_read(ruta_ejemplo)
+datos_crudos <- tibble::tibble(
+  fecha  = as.Date(c("2024-01-01", "2024-01-02")),
+  tmed   = c(26.3, 24.8),
+  lluvia = c(0, 5)
+)
+
+# Forzamos a que se vean mensajes en este chunk
+knitr::opts_chunk$set(message = TRUE)
+
 datos_limpios <- paqueteMeteo::meteo_clean(datos_crudos)
 head(datos_limpios)
-#> # A tibble: 4 × 3
+#> # A tibble: 2 × 3
 #>   fecha       tmed lluvia
 #>   <date>     <dbl>  <dbl>
-#> 1 2024-01-01  25.5    5  
-#> 2 2024-02-01  30.1    1.2
-#> 3 2024-03-01  28      0  
-#> 4 2024-04-01  22.3   15
+#> 1 2024-01-01  26.3      0
+#> 2 2024-01-02  24.8      5
 ```
 
 ### 2. Resumen Estadístico
@@ -108,7 +121,7 @@ paqueteMeteo::meteo_summary(datos_limpios)
 #> # A tibble: 1 × 2
 #>   temp_media lluvia_total
 #>        <dbl>        <dbl>
-#> 1       26.5         21.2
+#> 1       25.6            5
 ```
 
 ### 3. Visualización de Tendencia
@@ -118,11 +131,7 @@ temperatura media, utilizando la columna `fecha` para un análisis
 temporal rápido.
 
 ``` r
-# Aseguramos que los datos tengan la columna fecha para el plot
-datos_limpios_plot <- datos_limpios |>
-    dplyr::mutate(fecha = as.Date(fecha))
-
-paqueteMeteo::meteo_plot(datos_limpios_plot)
+paqueteMeteo::meteo_plot(datos_limpios)
 ```
 
 <img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
