@@ -1,5 +1,5 @@
 ---
-title: "Introducción a paqueteMeteo"
+title: "Introducción-paqueteMeteo"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{introduccion-paqueteMeteo}

@@ -89,3 +89,11 @@ característica, por favor:
 Por favor, ten en cuenta que el proyecto `paqueteMeteo` se rige por un
 [Código de Conducta del Colaborador](CODE_OF_CONDUCT.md). Al contribuir
 a este proyecto, aceptas cumplir sus términos.
+
+------------------------------------------------------------------------
+
+## Autores
+
+Este paquete es mantenido por:
+
+- **Lucas Descalzo** (`ldescalzo@mail.austral.edu.ar`)
