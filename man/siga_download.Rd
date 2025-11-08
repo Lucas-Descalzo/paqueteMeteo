@@ -15,3 +15,12 @@ Un objeto `data.frame` (tibble) con los datos descargados.
 \description{
 Descarga datos meteorol\enc{ó}{o}gicos de una URL externa
 }
+\examples{
+\dontrun{
+# El ejemplo se incluye solo para fines de documentaci\enc{ó}{o}n.
+# Descomentar para probar la descarga real de datos.
+url_ejemplo <- "https://ejemplo.com/datos_test.csv"
+datos_descargados <- siga_download(url_ejemplo)
+head(datos_descargados)
+}
+}
