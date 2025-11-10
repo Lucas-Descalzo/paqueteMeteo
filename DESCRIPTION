@@ -1,5 +1,5 @@
 Package: paqueteMeteo
-Title: Análisis de Datos Meteorológicos del SIGA #Sistema de info. y gestion agroclimatica
+Title: Análisis de Datos Meteorológicos del SIGA
 Version: 0.1.0
 Authors@R:
     person("Lucas", "Descalzo", email = "ldescalzo@mail.austral.edu.ar", 
