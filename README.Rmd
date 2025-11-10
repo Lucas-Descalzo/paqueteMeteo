@@ -62,7 +62,7 @@ datos_limpios <- meteo_clean(datos_crudos)
 # resumen del período
 meteo_summary(datos_limpios)
 
-# visualización (opcional, como comentaron)
+# visualización (opcional)
 # meteo_plot(datos_limpios)
 ```
 

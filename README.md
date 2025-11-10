@@ -63,7 +63,7 @@ meteo_summary(datos_limpios)
 #>        <dbl>        <dbl>
 #> 1       25.6            5
 
-# visualización (opcional, como comentaron)
+# visualización (opcional)
 # meteo_plot(datos_limpios)
 ```
 
