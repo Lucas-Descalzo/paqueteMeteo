@@ -21,7 +21,7 @@ Imports:
     janitor,
     httr,
     cli
-URL: https://github.com/Lucas-Descalzo/paqueteMeteo
+URL: https://lucas-descalzo.github.io/paqueteMeteo/, https://github.com/Lucas-Descalzo/paqueteMeteo
 BugReports: https://github.com/Lucas-Descalzo/paqueteMeteo/issues
 Suggests: 
     ggplot2,

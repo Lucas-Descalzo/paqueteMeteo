@@ -1,0 +1,100 @@
+# paqueteMeteo: Análisis de Datos Meteorológicos del SIGA
+
+## Documentación del paquete
+
+<https://lucas-descalzo.github.io/paqueteMeteo/>
+
+![](reference/figures/logo.png) El paquete `paqueteMeteo` proporciona un
+conjunto de herramientas enfocadas en la **lectura, limpieza y resumen**
+de datos meteorológicos del sistema SIGA (INTA). Garantiza un flujo de
+trabajo **reproducible y estandarizado** para la ciencia de datos.
+
+## Características Principales
+
+Las características clave del paquete incluyen:
+
+- **Lectura de Datos:** Importa fácilmente conjuntos de datos crudos del
+  formato SIGA utilizando
+  [`siga_read()`](https://lucas-descalzo.github.io/paqueteMeteo/reference/siga_read.md).
+- **Limpieza de Datos:** Estandariza los nombres de las columnas (p.ej.,
+  a minúsculas como `t_max_c`) y asegura que la columna de fecha tenga
+  el formato `Date` correcto usando
+  [`meteo_clean()`](https://lucas-descalzo.github.io/paqueteMeteo/reference/meteo_clean.md).
+- **Análisis y Resumen:** Calcula estadísticas descriptivas clave, como
+  la temperatura media y la precipitación total para el período, con la
+  función
+  [`meteo_summary()`](https://lucas-descalzo.github.io/paqueteMeteo/reference/meteo_summary.md).
+- **Visualización Rápida:** Genera un gráfico de tendencia temporal (ej.
+  temperatura media) para un análisis visual inmediato usando
+  [`meteo_plot()`](https://lucas-descalzo.github.io/paqueteMeteo/reference/meteo_plot.md).
+
+El paquete `paqueteMeteo` simplifica el proceso de obtención y trabajo
+con datos meteorológicos del SIGA, permitiendo a los usuarios centrarse
+en el análisis en lugar de en la preparación de datos.
+
+## Instalación
+
+Puedes instalar la versión de desarrollo desde GitHub con:
+
+``` r
+# install.packages("pak")
+pak::pak("Lucas-Descalzo/paqueteMeteo")
+```
+
+## Ejemplo de Flujo de Trabajo
+
+``` r
+library(paqueteMeteo)
+
+# dataset mínimo reproducible
+datos_crudos <- tibble::tibble(
+  fecha  = as.Date(c("2024-01-01","2024-01-02")),
+  tmed   = c(26.3, 24.8),
+  lluvia = c(0, 5)
+)
+
+# limpieza → columnas estándar
+datos_limpios <- meteo_clean(datos_crudos)
+
+# resumen del período
+meteo_summary(datos_limpios)
+#> # A tibble: 1 × 2
+#>   temp_media lluvia_total
+#>        <dbl>        <dbl>
+#> 1       25.6            5
+
+# visualización (opcional)
+# meteo_plot(datos_limpios)
+```
+
+## Cómo obtener ayuda
+
+Si encuentras un error (bug) o deseas solicitar una nueva
+característica, por favor:
+
+1.  Revisa si el problema ya ha sido reportado en nuestro [issue
+    tracker](https://github.com/Lucas-Descalzo/paqueteMeteo/issues).
+2.  Si no es así, por favor abre un nuevo *issue* con un ejemplo mínimo
+    reproducible en
+    [GitHub](https://github.com/Lucas-Descalzo/paqueteMeteo/issues/new).
+    Incluye:
+    - Una descripción detallada del problema.
+    - Pasos para reproducirlo.
+    - Un ejemplo mínimo reproducible. Example
+    - Información sobre tu entorno (versión de R, sistema operativo,
+      versión del paquete `paqueteMeteo`).
+
+## Código de Conducta
+
+Por favor, ten en cuenta que el proyecto `paqueteMeteo` se rige por un
+[Código de Conducta del
+Colaborador](https://lucas-descalzo.github.io/paqueteMeteo/CODE_OF_CONDUCT.md).
+Al contribuir a este proyecto, aceptas cumplir sus términos.
+
+------------------------------------------------------------------------
+
+## Autores
+
+Este paquete es mantenido por:
+
+- **Lucas Descalzo** (`ldescalzo@mail.austral.edu.ar`)
