@@ -19,6 +19,10 @@ knitr::opts_chunk$set(
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![codecov](https://codecov.io/gh/Lucas-Descalzo/paqueteMeteo/branch/master/graph/badge.svg?token=YOUR_CODECOV_TOKEN)](https://codecov.io/gh/Lucas-Descalzo/paqueteMeteo)
 
+## Documentación del paquete
+
+https://lucas-descalzo.github.io/paqueteMeteo/
+
 
 # paqueteMeteo: Análisis de Datos Meteorológicos del SIGA
 <img src="man/figures/logo.png" align="right" width="120" />
