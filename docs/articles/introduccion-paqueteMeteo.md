@@ -1,4 +1,4 @@
-# Introducción-paqueteMeteo
+# introduccion-paqueteMeteo
 
 ``` r
 library(paqueteMeteo)

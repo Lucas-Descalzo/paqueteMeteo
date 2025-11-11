@@ -3,7 +3,7 @@ pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
   introduccion-paqueteMeteo: introduccion-paqueteMeteo.html
-last_built: 2025-11-11T01:26Z
+last_built: 2025-11-11T01:45Z
 urls:
   reference: https://lucas-descalzo.github.io/paqueteMeteo/reference
   article: https://lucas-descalzo.github.io/paqueteMeteo/articles

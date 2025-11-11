@@ -10,11 +10,11 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 
 # paqueteMeteo: Análisis de Datos Meteorológicos del SIGA
 
-<img src="man/figures/logo.png" align="right" width="120" /> El paquete
-`paqueteMeteo` proporciona un conjunto de herramientas enfocadas en la
-**lectura, limpieza y resumen** de datos meteorológicos del sistema SIGA
-(INTA). Garantiza un flujo de trabajo **reproducible y estandarizado**
-para la ciencia de datos.
+<img src="man/figures/logo.png" align="right" width="120" alt="logo paqueteMeteo"/>
+El paquete `paqueteMeteo` proporciona un conjunto de herramientas
+enfocadas en la **lectura, limpieza y resumen** de datos meteorológicos
+del sistema SIGA (INTA). Garantiza un flujo de trabajo **reproducible y
+estandarizado** para la ciencia de datos.
 
 ## Características Principales
 

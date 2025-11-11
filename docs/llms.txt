@@ -4,10 +4,11 @@
 
 <https://lucas-descalzo.github.io/paqueteMeteo/>
 
-![](reference/figures/logo.png) El paquete `paqueteMeteo` proporciona un
-conjunto de herramientas enfocadas en la **lectura, limpieza y resumen**
-de datos meteorológicos del sistema SIGA (INTA). Garantiza un flujo de
-trabajo **reproducible y estandarizado** para la ciencia de datos.
+![logo paqueteMeteo](reference/figures/logo.png) El paquete
+`paqueteMeteo` proporciona un conjunto de herramientas enfocadas en la
+**lectura, limpieza y resumen** de datos meteorológicos del sistema SIGA
+(INTA). Garantiza un flujo de trabajo **reproducible y estandarizado**
+para la ciencia de datos.
 
 ## Características Principales
 
@@ -118,4 +119,4 @@ Este paquete es mantenido por:
 
 ### All vignettes
 
-- [Introducción-paqueteMeteo](https://lucas-descalzo.github.io/paqueteMeteo/articles/introduccion-paqueteMeteo.md):
+- [introduccion-paqueteMeteo](https://lucas-descalzo.github.io/paqueteMeteo/articles/introduccion-paqueteMeteo.md):
